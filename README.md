@@ -5,7 +5,7 @@
 ## Installation:
 
 ```
-git clone ...
+git clone https://github.com/mparker2/rio-proximity.git
 cd rio-proximity
 python setup.py install
 ```
