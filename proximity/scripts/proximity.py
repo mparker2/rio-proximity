@@ -41,7 +41,10 @@ def proximity(input_raster, output_raster, band,
         distance[distance > max_distance] = max_distance
     
     distance = distance.astype(np.float32)
-    metadata.update(dtype=rasterio.float32, count=1, compress='lzw')
+    metadata.update(dtype=rasterio.float32,
+                    count=1,
+                    compress='lzw',
+                    nodata=-999) # zero is meaningful in these rasters
     with rasterio.open(output_raster, 'w', **metadata) as oraster:
         oraster.write(distance, indexes=1)
 
