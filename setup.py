@@ -1,9 +1,8 @@
 from codecs import open as codecs_open
 from setuptools import setup, find_packages
 
-
-# Parse the version from the proximity script
-with open('proximity.py') as f:
+# Parse the version from the fiona module.
+with open('proximity/__init__.py') as f:
     for line in f:
         if line.find("__version__") >= 0:
             version = line.split("=")[1].strip()
@@ -15,10 +14,9 @@ with open('proximity.py') as f:
 with codecs_open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
-
 setup(name='rio-proximity',
       version=version,
-      description=u"Proximity analysis for rasters",
+      description=u"Calculate distances from raster features",
       long_description=long_description,
       classifiers=[],
       keywords='',
@@ -30,12 +28,11 @@ setup(name='rio-proximity',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'scipy',
           'click',
-          'fiona',
+          'scipy',
           'rasterio'
       ],
       entry_points="""
       [rasterio.rio_commands]
-      proximity=proximity:proximity
+      proximity=proximity.scripts.proximity:proximity
       """)
